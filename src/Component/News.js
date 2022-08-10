@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import './News.css'
 
+
+
 function News() {
     const [user, setUser] = useState([]);
     useEffect(() => {
@@ -23,22 +25,21 @@ function News() {
             </div>
             <h5 className="stories">Top Stories :</h5>
             {user.map((key, index) => {
-                console.log(key)
                 return (
                     <div className="container">
                         <div class="row" key={index}>
-                                <div className="para col-sm-4">
-                                    <img  className="image" src={key.jetpack_featured_media_url}></img>
-                                </div>
-                                <div className="para col-sm-8">
-                                    <a className="heading" >{key.title.rendered}</a>
-                                    <p >{key.date_gmt}</p>
-                                    <p >{key.author}</p>
-                                    <p >{key.featured_media}</p>
-                                    <p >{key.excerpt.rendered}</p>
-                                    <a href={key.link}>Read More ...</a>
-                                </div>
-                                <hr />
+                            <div className="para col-sm-4">
+                                <img  className="image" src={key.jetpack_featured_media_url}></img>
+                            </div>
+                            <div className="para col-sm-8">
+                                <a className="heading" >{key.title.rendered}</a>
+                                <p ><b>Date-</b>{key.date_gmt}</p>
+                                <p ><b>Author-</b>{key.parsely.meta.author[0].name}</p>
+                                <p ><b>Feature Media-</b>{key.parsely.meta.publisher.name}</p>
+                                <p dangerouslySetInnerHTML={{ __html: key.excerpt.rendered }}></p>
+                                <a href={key.link}>Read More ...</a>
+                            </div>
+                            <hr />
                         </div>
                     </div>
                 );
